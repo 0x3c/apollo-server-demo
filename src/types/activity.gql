@@ -1,0 +1,3 @@
+interface Activity {
+  id: ID!
+}
