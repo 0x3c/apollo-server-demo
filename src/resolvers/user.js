@@ -21,4 +21,9 @@ module.exports = {
       return await db.user.create(info);
     },
   },
+  User: {
+    activities: async (parent, args, { db }, obj) => {
+      return await db.activity.getActivities(parent.id);
+    },
+  },
 };

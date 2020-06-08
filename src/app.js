@@ -12,6 +12,7 @@ const server = new ApolloServer({
   context: () => {
     return { db };
   },
+  tracing: false,
 });
 
 server.applyMiddleware({ app });

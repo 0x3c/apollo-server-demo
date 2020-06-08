@@ -20,10 +20,24 @@ const createUser = ({
 const list = Array.from({ length: 8 }, () => ({
   ...createUser({ name: createName() }),
 }));
+list.unshift(
+  createUser({
+    id: "100",
+    name: "管理员",
+    mobile: "13111111111",
+    email: "admin@xx.com",
+    description: "内建测试",
+  })
+);
 
 const getAll = async () => {
   await delay(1000);
   return list;
+};
+const getAllSync = () => list;
+
+const getUserById = (_id) => {
+  return list.find(({ id }) => _id === id);
 };
 
 const create = async ({ name, mobile, email, description, avatar }) => {
@@ -58,7 +72,9 @@ const update = async ({ id, name, mobile, email, description, avatar }) => {
 };
 
 module.exports = {
+  getAllSync,
   getAll,
+  getUserById,
   create,
   remove,
   update,

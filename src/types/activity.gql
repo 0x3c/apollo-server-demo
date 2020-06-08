@@ -1,3 +1,44 @@
+type Comment {
+  content: String!
+  created: String
+}
 interface Activity {
   id: ID!
+  """
+  活动类型, 研报 - 1, 电话会议 - 2
+  """
+  type: Int!
+  title: String!
+  content: String
+  author: User
+}
+
+type Report implements Activity {
+  id: ID!
+  """
+  研报 - 1
+  """
+  type: Int!
+  title: String!
+  content: String
+  author: User
+  comments: [Comment!]!
+}
+
+type TelMeeting implements Activity {
+  id: ID!
+  "电话会议 - 2"
+  type: Int!
+  title: String!
+  content: String
+  author: User
+}
+
+union ActivityResult = Report | TelMeeting
+type Query {
+  activities: [Activity!]!
+  activity: Activity!
+  reports: [Report!]!
+  telmeetings: [TelMeeting!]!
+  foo: String
 }

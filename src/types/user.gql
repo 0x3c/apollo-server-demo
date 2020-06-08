@@ -12,6 +12,7 @@ type User {
   email: String
   description: String
   avatar: String
+  activities: [Activity!]!
 }
 
 type Query {
